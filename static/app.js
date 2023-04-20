@@ -1,6 +1,6 @@
 function init(currID) {
 
-    //Use the D3 library to read in samples.json from the URL
+    
     
     const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
     
@@ -15,7 +15,7 @@ function init(currID) {
     
     names = Object.values(names);
     
-        // Populate the dropdown from the list/array
+        
         selector = d3.select("#selDataset");
     
         for (let i = 0; i < names.length; i++){
@@ -26,22 +26,20 @@ function init(currID) {
     
     myUser = samples.filter(sample => sample.id == currID)[0];
     
-    //Get all values for a single ID
+    
     let selectedUserSampleValues = myUser.sample_values;
     let selectedUserOTUIDs = myUser.otu_ids;
     let selectedUserOTULabels = myUser.otu_labels;
     
-    //Get the top 10 for each and reverse for display
+   
     topSampleValues = selectedUserSampleValues.slice(0,10).reverse();
     topOTUIDs = selectedUserOTUIDs.slice(0,10).reverse();
     topOTULabels = selectedUserOTULabels.slice(0,10).reverse();
     
-    //Format OTU IDs
+    
     let formattedOTUIDs = topOTUIDs.map(formattedOTU => `OTU ${formattedOTU}`);
     
-    //console.log(topSampleValues);
-    //console.log(topOTUIDs);
-    //console.log(topOTULabels);
+
     
     //Output the bar graph
     
@@ -65,10 +63,6 @@ function init(currID) {
     
     Plotly.newPlot("bar", OTUData, layout);
     
-    
-    
-    
-    //console.log(selectedUserSampleValues)
     
     //Output the bubble graph
     
@@ -100,11 +94,9 @@ function init(currID) {
     
     // Set a variable for the demograhic info box
     let demoInfo = d3.select("#sample-metadata");
-    
-    //Clear data in the demographic info box
     demoInfo.text("");
     
-    //Display demographic info
+    
     Object.entries(myUser2).forEach(
         ([key, value]) => demoInfo.append("p").html(`<b>${key}:</b> ${value}<hr/>`));
     
@@ -128,12 +120,12 @@ function init(currID) {
     
     Plotly.newPlot('gauge', gaugeData);
     
-    //console.log(myUser2.wfreq)
+    
     
     });
     }
     
-    //Set an ID so the charts will populate initially
+  
     let currID = 940;
     init(currID)
     
